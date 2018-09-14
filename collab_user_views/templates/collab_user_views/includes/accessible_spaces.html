@@ -1,0 +1,16 @@
+{% load space_tags %}
+
+{% load i18n %}
+
+{% if accessible_spaces  %}
+<div class="panel panel-default">
+  <div class="panel-body">
+	<h5>{% trans 'Accessible Spaces' %}</h5>
+	<ul class="list-unstyled list-spaced">
+	{% for space in accessible_spaces %}
+		<li><a href="/{% space_url space "spaces_dashboard:dashboard" %}">{{ space.name }}</a></li>
+	{% endfor %}
+	</ul>
+  </div>
+</div>
+{% endif %}

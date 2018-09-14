@@ -1,0 +1,15 @@
+{% load space_tags %}
+
+{% load i18n staticfiles %}
+
+{% if accessible_spaces  %}
+<div class="panel panel-default">
+  <div class="panel-body">
+	<h5>{% trans 'Manual' %}</h5>
+    <a href="{% static 'manual/manual.pdf' %}" class="btn btn-default">
+    <span clasS="icon icon-download"></span>
+    {% trans 'Download' %}
+    </a>
+  </div>
+</div>
+{% endif %}

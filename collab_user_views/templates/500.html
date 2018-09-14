@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block navbar_brand %}{% if user.is_authenticated %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block navbar_links %}{% endblock %}
+
+{% block navbar_links_mobile %}{% endblock %}
+
+
+{% block navbar_avatar %}{% if user.is_authenticated %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+<h1>500: Internal Server Error</h1>
+<p>{% blocktrans %}Whoops, something went wrong. Sorry about that. The developers have been notified.{% endblocktrans %}</p>
+{% endblock content %}

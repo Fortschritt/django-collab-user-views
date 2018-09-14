@@ -1,0 +1,15 @@
+{% load i18n space_tags %}
+
+{% if created_spaces %}
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h5>{% blocktrans %}Spaces created by me{% endblocktrans %}</h5>
+    <ul class="list-unstyled list-spaced">
+      {% for space in created_spaces %}                             
+        <li><a href="/{% space_url space "spaces_dashboard:dashboard" %}">{{ space.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endif %}

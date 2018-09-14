@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block navbar_brand %}{% if user.is_authenticated %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block navbar_links %}{% endblock %}
+
+{% block navbar_links_mobile %}{% endblock %}
+
+
+{% block navbar_avatar %}{% if user.is_authenticated %}{{ block.super }}{% endif %}{% endblock %}
+
+{% block content %}
+<h1>404: Not Found</h1>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="col-xl-6 col-xl-offset-3 col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class="panel panel-default">
+<div class="panel-body">
+
+<h1>{% trans 'Create new Space' %}</h1>
+<form action="{% url 'collab_user_views:create_space' %}" method="post">
+	{% csrf_token %}
+	<fieldset class="form-group">
+	<label for="space_name">{% trans 'Name of new space' %} *</label>
+	<input type="text" name="space_name" id="space_name" value="" required class="form-control">
+	</fieldset>
+	<fieldset class="form-group">
+	<label for="space_expires">{% trans 'Expiration date' %}</label>
+	<input type="date" name="space_expires" id="space_expires" value="" class="form-control">
+	</fieldset>
+	<button type="submit" class="btn btn-primary">
+		<span class="icon icon-plus">
+		{% trans 'Create Space' %}
+	</button>
+</form>
+
+</div>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n space_tags collab_tags %}
+
+{% block content %}
+<div class="col-md-12">
+<h1>{% trans 'Dashboard' %} <small class="text-muted">{% trans 'for' %} {{ user|nice_name }}</small></h1>
+</div>
+
+<div class="col-md-3">
+	{% if user|is_manager %}
+	<div class="panel panel-default">
+	<div class="panel-body">
+	<h5>{% trans 'Create Groups' %}</h5>
+		<a href="{% url 'collab_user_views:create_space' %}" class="btn btn-default">
+            <span class="icon icon-plus"></span>
+            {% trans 'Create new Space' %}
+        </a>
+	</div>
+	</div>
+	{% endif %}
+
+{% include "collab_user_views/includes/own_spaces.html" %}
+{% if user|is_manager %}
+  {% include "collab_user_views/includes/accessible_spaces.html" %}
+{% endif %}
+{% if user|is_manager %}
+  {% include "collab_user_views/includes/download_manual.html" %}
+{% endif %}
+
+</div>
+
+
+<div class="col-md-6">
+{% include "collab_user_views/includes/user_stream.html" %}
+{% if user|is_manager %}
+	{% include "collab_user_views/includes/manager_stream.html" %}
+{% endif %}
+
+
+
+</div>
+
+<div class="col-md-3">
+{% include "collab_user_views/includes/created_spaces.html" %}
+</div>
+
+{% endblock content %}

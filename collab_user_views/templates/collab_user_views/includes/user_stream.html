@@ -1,0 +1,43 @@
+{% load collab_tags i18n space_tags %}
+{#{% load activity_tags %} {#not needed unless we load the streams directly in the template?#}
+
+{% if user_stream %}
+	
+<ul class="list-group media-list media-list-stream">
+  <li class="list-group-item p-a">
+	<h3 class="m-a-0">{% trans 'Recent activities in my spaces' %}</h3>
+  <li>
+  {% for action in user_stream %}
+    <li class="list-group-item media p-a">
+	  <a class="media-left" href="{% url 'collab_profile:detail' action.actor.pk %}" title="{{ action.actor }}">
+{#        <img class="media-object img-circle" src="{{ action.actor.profile.avatar }}"> #}
+		<div class="media-object img-profile" style="background:url({{ action.actor.profile.avatar }});"></div>
+	  </a>
+
+	  <div class="media-body">
+	    <span class="pull-right text-muted">
+          {{ action.timestamp|timesince }} {% trans "ago" %}
+        </span>
+		{{ action.action_object|verbose_name|capfirst }}
+
+        {% if action.action_object.get_absolute_url %}
+          <a href="{% if not space and action.target %}/{{action.target.slug}}{% endif %}{{ action.action_object.get_absolute_url }}">{{ action.action_object }}</a> 
+        {% elif action.action_object.profile %}
+          <a href="{% url 'collab_profile:detail' action.action_object.pk %}">{{ action.action_object }}</a> 
+        {% else %}
+          <a href="{{ action.action_object_url }}">{{ action.action_object }}</a>{% endif %} 
+          {{ action.verb }}
+
+		{% if action.target %}
+		  {% trans 'in' %}
+		    {% if action.target.get_absolute_url %}
+				<a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>
+		    {% else %}
+				<a href="{{ action.target_url }}">{{ action.target.name }}</a>
+			{% endif %}
+		{% endif %}
+	  </div>
+	</li>
+  {% endfor %}
+</ul>
+{% endif %}

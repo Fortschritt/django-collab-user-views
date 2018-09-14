@@ -1,0 +1,9 @@
+
+# /
+/__pycache__
+
+# /migrations/
+/migrations/__pycache__
+
+# /templatetags/
+/templatetags/__pycache__
